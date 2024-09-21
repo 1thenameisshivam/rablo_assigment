@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useNavigate } from "react-router-dom";
+
+import { Link } from "react-router-dom";
+
 function UserCard({ user, onDelete, onSelect, isSelected }) {
-  const navigate = useNavigate();
   return (
     <div
-      onClick={() => navigate(`/user/${user.id}`)}
       className={`border p-4 rounded-lg shadow-md ${
         isSelected ? "bg-blue-100" : ""
       }`}
@@ -22,7 +22,9 @@ function UserCard({ user, onDelete, onSelect, isSelected }) {
       <p>Email: {user.email}</p>
       <p>Role: {user.role}</p>
       <div className="mt-4 flex justify-between">
-        <div className="text-blue-500 hover:underline">View Details</div>
+        <Link to={`/user/${user.id}`} className="text-blue-500 hover:underline">
+          View Details
+        </Link>
         <div>
           <button
             onClick={() => onDelete(user.id)}
